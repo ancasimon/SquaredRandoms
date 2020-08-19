@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SquaredRandoms
 {
@@ -11,7 +12,7 @@ namespace SquaredRandoms
             var randomNumberList = new List<int>();
             var squaredRandomNumberList = new List<int>();
             int squaredNumber;
-            var evenSquaredNumbersOnly = new List<int>();
+            //var evenSquaredNumbersOnly = new List<int>();
 
 
             //1 - get randomly-generated numbers and add them to a collection:
@@ -62,9 +63,9 @@ namespace SquaredRandoms
             //        evenSquaredNumbersOnly.Add(number);
             //    }
             //}
-            
+
             //Console.WriteLine("Here is the final list with even squared numbers only: ");
-            //foreach(var evenNum in evenSquaredNumbersOnly)
+            //foreach (var evenNum in evenSquaredNumbersOnly)
             //{
             //    Console.WriteLine(evenNum);
             //}
@@ -79,21 +80,26 @@ namespace SquaredRandoms
             //    }
             //}
 
-            for (var i = 0; i < squaredRandomNumberList.Count; i++)
-            {
-                if(squaredRandomNumberList[i] % 2 != 0 )
-                {
-                    squaredRandomNumberList.Remove(squaredRandomNumberList[i]);
-                }
-            }
+            //for (var i = 0; i < squaredRandomNumberList.Count; i++)
+            //{
+            //    if(squaredRandomNumberList[i] % 2 != 0 )
+            //    {
+            //        squaredRandomNumberList.Remove(squaredRandomNumberList[i]);
+            //    }
+            //}
 
-            Console.WriteLine("Here is the final list updated to include only even squared results.");
-            foreach (var evenNum in squaredRandomNumberList)
-            {
-                Console.WriteLine(evenNum);
-            }
+            //Console.WriteLine("Here is the final list updated to include only even squared results.");
+            //foreach (var evenNum in squaredRandomNumberList)
+            //{
+            //    Console.WriteLine(evenNum);
+            //}
 
-            //I do still get odd numbers in my final list - why?????
+            //With the last version above: I do still get odd numbers in my final list - why????? GOT IT!!! Because the integers are always rounded down!! So that's how odd numbers get in my final list in this version! because the remainder is rounded down!!
+
+            //UPDATE: One more option for the last list - using Linq and .Where()!
+            var evenSquaredNumbersOnly = squaredRandomNumberList.Where(number => (number % 2 == 0));
+
+            Console.WriteLine($"Here is the final list of even only numbers: {string.Join(",", evenSquaredNumbersOnly)}");
         }
     }
 }
