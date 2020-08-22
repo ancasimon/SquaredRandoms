@@ -9,8 +9,8 @@ namespace SquaredRandoms
         static void Main(string[] args)
         {
             Random random = new Random();
-            var randomNumberList = new List<int>();
-            var squaredRandomNumberList = new List<int>();
+            var randomNumbers = new List<int>();
+            var squaredRandomNumbers = new List<int>();
             int squaredNumber;
             //var evenSquaredNumbersOnly = new List<int>();
 
@@ -31,25 +31,25 @@ namespace SquaredRandoms
             for (var i = 0; i < numberOfInstances; i++)
             {
                 var newNumber = random.Next(51);
-                randomNumberList.Add(newNumber);
+                randomNumbers.Add(newNumber);
             }
 
             Console.WriteLine("Here is your list of random numbers:");
-            foreach ( var num in randomNumberList)
+            foreach ( var num in randomNumbers)
             {
                 Console.WriteLine(num);
             }
             Console.WriteLine();
 
             //2 - square them:
-            foreach (var number in randomNumberList)
+            foreach (var number in randomNumbers)
             {
                 squaredNumber = number * number;
-                squaredRandomNumberList.Add(squaredNumber);
+                squaredRandomNumbers.Add(squaredNumber);
             }
 
             Console.WriteLine("Here is a list of the random numbers squared: ");
-            foreach (var squaredNum in squaredRandomNumberList)
+            foreach (var squaredNum in squaredRandomNumbers)
             {
                 Console.WriteLine(squaredNum);
             }
@@ -97,7 +97,7 @@ namespace SquaredRandoms
             //With the last version above: I do still get odd numbers in my final list - why????? GOT IT!!! Because the integers are always rounded down!! So that's how odd numbers get in my final list in this version! because the remainder is rounded down!!
 
             //UPDATE: One more option for the last list - using Linq and .Where()!
-            var evenSquaredNumbersOnly = squaredRandomNumberList.Where(number => (number % 2 == 0));
+            var evenSquaredNumbersOnly = squaredRandomNumbers.Where(number => (number % 2 == 0));
 
             Console.WriteLine($"Here is the final list of even only numbers: {string.Join(",", evenSquaredNumbersOnly)}");
         }
